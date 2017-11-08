@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
@@ -8,24 +9,21 @@ public class GameController : MonoBehaviour {
 
 	public Text cargoScoreText; 
 
+	GameObject activeCube;
+
+	GameObject[,]cubeRow;
+
 	Vector3 cubePosition;
 
 	public static int Xairplane, Yairplane, startX,startY;
 
-	////public Text cargoScoreText;
-
 	public GameObject currentCube;
-
 
 	public static GameObject redcube;
 
 	public static GameObject blackcube;
 
-	GameObject[,]cubeRow;
-
-	int score;
-
-	int cargoGain;
+	int score, cargoGain;
 
 	float turnLength, turnTimer;
 
@@ -43,6 +41,8 @@ public class GameController : MonoBehaviour {
 	/// This is to position the cubes, declare that "cliked is false", create a position to put a red cube at the top left of the game and, to make cubes no more than 16 x 9.
 	void Start () {
 
+
+		cargoScoreText.text = "Cargo: " + airplaneCargo + "  Score: " + score;
 
 		turnLength = 1.5f;
 
@@ -62,6 +62,10 @@ public class GameController : MonoBehaviour {
 		Xairplane = 0;
 
 		Yairplane = 8;
+
+		startX = Xairplane;
+
+		startY = Yairplane;
 
 		for (int y = 0; y < 9; y++){
 			
@@ -109,7 +113,7 @@ public class GameController : MonoBehaviour {
 			
 					/// activate it 
 					airplaneActive = true;
-		 			clikedCube.transform.localScale /= 1.5f;
+		 			clikedCube.transform.localScale *= 1.5f;
 		}
 	}
 	/// if the player cliked the sky (not an airplane )
