@@ -29,10 +29,9 @@ public class GameController : MonoBehaviour {
 
 	int airplaneCargo, airplaneCargoMax;
 
-	int depotX, depotY;
+	int depotX, depotY ;
 
 	bool airplaneActive;
-
 
 
 	// Use this for initialization
@@ -96,7 +95,7 @@ public class GameController : MonoBehaviour {
 		depotY = 0;
 		blackcube = cubeRow [depotX, depotY];
 		cubeRow [depotX, depotY].GetComponent<Renderer> ().material.color = Color.black;
-	
+
 	}
 
 
@@ -118,11 +117,14 @@ public class GameController : MonoBehaviour {
 	}
 	/// if the player cliked the sky (not an airplane )
 	else {
+			
 		if (airplaneActive) {
+				
 		/// Remove the airplane from it's old spot, if it's the depot set it to black
 				if (Xairplane == depotX && Yairplane == depotY){
 					cubeRow [depotX, depotY].GetComponent<Renderer> ().material.color = Color.black;
 		}
+
 		////otherwise,set it to white
 				else {
 
@@ -166,12 +168,19 @@ public class GameController : MonoBehaviour {
 		
 		}
 	}
+		
+
+
 
  	// Update is called once per frame
 	void Update (){
+
 		if (Time.time > turnTimer) {
 
+		
+
 			LoadCargo ();
+
 			DeliverCargo ();
 
 			cargoScoreText.text = "Cargo: " + airplaneCargo + "  Score: " + score;
